@@ -1,12 +1,11 @@
-// code from borowed from:
+// code borrowed from...
 // https://www.sanfoundry.com/c-program-perform-matrix-multiplication/
 //
 //
-//
+//https://github.com/drewphillips/matrix_calulator.c
 
 /* instructions:
 Write a C program to emulate a matrix calculator.Your program must ...
-Read in integers for two r x c matrices Aand B.Max size for both matrices is 10x10.
 Read in integers for two r x c matrices Aand B.Max size for both matrices is 10x10.
 Print matrix A and matrix B.
 Loop the entire program until the user wants to quit.
@@ -47,26 +46,26 @@ int main()
     int i, j, k;
     int userChoice;
     int loopMenu;
-    double multiplyer = 0;
+    int multiplyer = 0;
     int answer[10][10];
     
     //Read in integers for two r x c matrices A and B.Max size for both matrices is 10x10.  
 
     do {
-    printf("Lets set up two matrix tables, max 10x10 each. How many rows and columns do you want to create for the first table?\n");
-    printf("Rows = ");
-    scanf("%d", &m1Rows);
-    printf("Columns = ");
-    scanf("%d", &m1Colum);
-    printf("\n");
+        printf("Lets set up two matrix tables, max 10x10 each. How many rows and columns do you want to create for the first table?\n");
+        printf("Rows = ");
+        scanf("%d", &m1Rows);
+        printf("Columns = ");
+        scanf("%d", &m1Colum);
+        printf("\n");
 
 
-    printf("How many rows and columns do you want to create for the second table? max 10\n");
-    printf("Rows = ");
-    scanf("%d", &m2Rows);
-    printf("Columns = ");
-    scanf("%d", &m2Colum);
-    printf("\n");
+        printf("How many rows and columns do you want to create for the second table? max 10\n");
+        printf("Rows = ");
+        scanf("%d", &m2Rows);
+        printf("Columns = ");
+        scanf("%d", &m2Colum);
+        printf("\n");
 
         //scan in matrix 1
         for (i = 0; i < m1Rows; i++) {
@@ -83,6 +82,8 @@ int main()
             scanf("%d", &matrix2[i][j]);
             }
         }
+
+         //Print matrix A and matrix B.
 
          printf("\n");
          printf("Matrix Array 1\n");
@@ -103,109 +104,108 @@ int main()
             }
                 printf("\n");
           }
-
-          printf("Another table? y/n ");
-          scanf(" %c", &loopAgain);
-          loopAgain = tolower(loopAgain);
-    } while (loopAgain == 'y');
-
-    /*
-        do {
-            printf("\n\n\n");
-            printf("M E N U\n");
-            printf("1. Add A + B\n");
-            printf("2. subtract\n");
-            printf("3. scalar multiply\n");
-            printf("4. matrix multiply\n");
-            printf("5. transpose\n");
-            printf("6. determinant\n");
-
-        } while (loopMenu == 'y'); // end loop menue
-
-        */
-
-        return 0;
-}
+    
 
 
+          //Display menu to choose from add, subtract, scalar multiply, matrix multiply, transposeand determinant
+          do {
+                printf("\n\n\n");
+                printf("M E N U\n");
+                printf("1. Add Matrix 1 + Matrix 2\n");
+                printf("2. Subtract Matrix 1 + Matrix 2\n");
+                printf("3. Scalar multiply Matrix 1 + Matrix 2\n");
+                printf("4. Matrix multiplyMatrix 1 + Matrix 2\n");
+                printf("5. Transpose Matrix 1 + Matrix 2\n");
+                printf("6. Determinant Matrix 1 + Matrix 2\n");
 
-        /*
+                //and now a menue
+                printf("\nChoose an option: ");
+                scanf("%d", &userChoice);
 
-        //and now a menue
-        printf("\nChoose an option: ");
-        scanf("%d", &userChoice);
-        
-        switch (userChoice) {
+                switch (userChoice) {
 
-        case 1:
-            printf("Add\n");
-            break;
-        case 2:
-            printf("Subtract\n");
-            break;
-        case 3:
-            printf("scalar multiply, what is the value of the contant? \n");
-            scanf("%d", &multiplyer);
+                case 1:
+                    printf("Add\n");
+                    break;
 
-            for (i=0; i < array1NumRows; i++);{
-                for (j=0; array1numColum; j++); {
+                case 2:
+                    printf("Subtract\n");
+                    break;
+
+                case 3:
+                    printf("Scalar Multiply");
+                    /*
+                    scanf("%d", &multiplyer);
+                    printf("scalar multiply, what is the value of the contant? \n");
+                    scanf("%d", &multiplyer);
+
+                    for (i=0; i < array1NumRows; i++);{
+                    for (j=0; array1numColum; j++); {
 
                     answer[i][j] = multiplyer* matrix1[i][j];
 
-            
 
-                }
 
-            }
+                    }
 
-            for (i=0; i < array1NumRows; i++) {
-                for (j=0; array1numColum; j++)  {
+                    }
+
+                    for (i=0; i < array1NumRows; i++) {
+                    for (j=0; array1numColum; j++)  {
                     printf("%d/n", answer[i][j]);
+                        }
                 }
-            }
 
 
-        
-            break;
-        case 4:
-            printf("matrix multiply\n");
+                */
+                    break;
 
-            if (array1numColum != array2NumRows) {
-                printf("Matriices cant be multiplied together");
-                            }
+                case 4:
+                    printf("matrix multiply\n");
+                    /*
+                    if (array1numColum != array2NumRows) {
+                 printf("Matriices cant be multiplied together");
+                           }
 
-                else {
+                    else {
                     for (i=0; j < array1NumRows; i++);
                         for (j=0; j < array2numColum; j++);
-                            answer[i][j]=0;
+                             answer[i][j]=0;
 
-                            for (k=0; k < array1numColum; k++);
-                            answer[i][j] += matrix1[i][j] * matrix2[i][j];
+                           for (k=0; k < array1numColum; k++);
+                           answer[i][j] += matrix1[i][j] * matrix2[i][j];
+                        }
+
+                        }
+
+                        */
+                    break;
+
+                case 5:
+                    printf("Transpose\n");
+                    break;
+
+                case 6:
+                    printf("Determinant\n");
+                    break;
+
+                    // print a red error warning if 1 - 6 is not selected.
+                default:
+                    printf(ANSI_COLOR_RED);
+                    printf("Invalid option, please select 1 - 6 only\n");
+                    printf(ANSI_COLOR_RESET);
 
                 }
-
+                                
+          } while (loopMenu == 'y'); // end loop menue
+            
+        //Loop the entire program until the user wants to quit.
         
-        
+        printf("Set up two more Matrixes? y/n ");
+        scanf(" %c", &loopAgain);
+        loopAgain = tolower(loopAgain);
+     
+    } while (loopAgain == 'y');
 
-        
-            break;
-        case 5:
-            printf("transpose\n");
-            break;
-        case 6:
-            printf("determinant\n");
-            break;
-        }
-
-
-        
-        //else {
-        //printf(ANSI_COLOR_RED);
-        //printf("Error! Addition not possible. Matrices are not of the same size.\n");
-        //printf(ANSI_COLOR_RESET);
-        //}
-
-        printf("Another menu Choice A and B y/n?:\n");
-        scanf(" %d", &loopMenu);
-        loopMenu = toupper(loopMenu);
-        */
+        return 0;
+}
