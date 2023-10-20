@@ -124,6 +124,7 @@ int main()
 
                 switch (userChoice) {
 
+                //If add is selected, calculateand print A + B or specific error if operation is not possible
                 case 1:
                     printf("Add Matrix 1 and 2\n");
                     printf("\n");
@@ -152,8 +153,33 @@ int main()
                     
                     break;
 
+                //If subtract is selected, calculateand print A - B or specific error if operation is not possible
                 case 2:
-                    printf("Subtract\n");
+                    printf("Subtract Matrix 1 from Matrix 2\n");
+                    printf("\n");
+
+                    if ((m1Rows == m2Rows) && (m1Colum == m2Colum)) {
+                        for (i = 0; i < m1Rows; i++) {
+                            for (j = 0; j < m1Colum; j++) {
+                                answer[i][j] = matrix1[i][j] - matrix2[i][j];
+                            }
+                        }
+
+                        for (i = 0; i < m1Rows; i++) {
+                            for (j = 0; j < m1Colum; j++) {
+                                printf("%d ", answer[i][j]);
+                            }
+                            printf("\n");
+                        }
+                    }
+                    else {
+                        printf("\n");
+                        printf(ANSI_COLOR_RED);
+                        printf("ERROR! Matrices must be the same size to subtract.");
+                        printf(ANSI_COLOR_RESET);
+                        printf("\n");
+                    }
+
                     break;
 
                 //If scalar multiply is selected, read in scalarand calculateand print scalar* A and scalar* B
