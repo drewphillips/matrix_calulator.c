@@ -125,39 +125,61 @@ int main()
                 switch (userChoice) {
 
                 case 1:
-                    printf("Add\n");
+                    printf("Add Matrix 1 and 2\n");
+                    printf("\n");
+
+                    if ((m1Rows == m2Rows) && (m1Colum == m2Colum)) {
+                        for (i = 0; i < m1Rows; i++) {
+                            for (j = 0; j < m1Colum; j++) {
+                                answer[i][j] = matrix1[i][j] + matrix2[i][j];
+                            }
+                        }
+
+                        for (i = 0; i < m1Rows; i++) {
+                            for (j = 0; j < m1Colum; j++) {
+                                printf("%d ", answer[i][j]);
+                            }
+                            printf("\n");
+                        }
+                    }
+                    else {
+                        printf("\n");
+                        printf(ANSI_COLOR_RED);
+                        printf("ERROR! Matrices must be the same size to add together.");
+                        printf(ANSI_COLOR_RESET);
+                        printf("\n");
+                    }                    
+                    
                     break;
 
                 case 2:
                     printf("Subtract\n");
                     break;
 
+                //If scalar multiply is selected, read in scalarand calculateand print scalar* A and scalar* B
                 case 3:
                     printf("Scalar Multiply");
-                    /*
+                    printf("scalar multiply, what is the value of the constant to multipy by? \n");
                     scanf("%d", &multiplyer);
-                    printf("scalar multiply, what is the value of the contant? \n");
-                    scanf("%d", &multiplyer);
-
-                    for (i=0; i < array1NumRows; i++);{
-                    for (j=0; array1numColum; j++); {
-
-                    answer[i][j] = multiplyer* matrix1[i][j];
-
-
-
-                    }
-
-                    }
-
-                    for (i=0; i < array1NumRows; i++) {
-                    for (j=0; array1numColum; j++)  {
-                    printf("%d/n", answer[i][j]);
+                    printf("You entered %d", multiplyer);
+                    //FIXME // the code stops here, wont print above statment, wont calulate below...
+                    for (i = 0; i < m1Rows; i++) {
+                        for (j = 0; i < m1Colum; j++) {
+                            answer[i][j] = multiplyer * matrix1[i][j];
                         }
-                }
+
+                    }
+
+                    printf("Multiplied matrix\n");
+                    for (i = 0; i < m1Rows; i++) {
+                        for (j = 0; j < m1Colum; j++)  {
+                        printf("%d/n", answer[i][j]);
+                    }
+                        }
+
+                    // calulate martix 2
 
 
-                */
                     break;
 
                 case 4:
