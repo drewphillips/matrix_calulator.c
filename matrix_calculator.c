@@ -113,7 +113,7 @@ int main()
                 printf("M E N U\n");
                 printf("1. Add Matrix 1 + Matrix 2\n");
                 printf("2. Subtract Matrix 1 + Matrix 2\n");
-                printf("3. Scalar multiply Matrix 1 + Matrix 2\n");
+                printf("3. Scalar multiply Matrix 1 & Matrix 2 * a Constant Variable\n");
                 printf("4. Matrix multiplyMatrix 1 + Matrix 2\n");
                 printf("5. Transpose Matrix 1 + Matrix 2\n");
                 printf("6. Determinant Matrix 1 + Matrix 2\n");
@@ -184,27 +184,46 @@ int main()
 
                 //If scalar multiply is selected, read in scalarand calculateand print scalar* A and scalar* B
                 case 3:
+                    
                     printf("Scalar Multiply");
                     printf("scalar multiply, what is the value of the constant to multipy by? \n");
                     scanf("%d", &multiplyer);
-                    printf("You entered %d", multiplyer);
-                    //FIXME // the code stops here, wont print above statment, wont calulate below...
+                    printf("You entered %d\n", multiplyer);
+                    
                     for (i = 0; i < m1Rows; i++) {
-                        for (j = 0; i < m1Colum; j++) {
+                        for (j = 0; j < m1Colum; j++) {
                             answer[i][j] = multiplyer * matrix1[i][j];
                         }
 
                     }
 
-                    printf("Multiplied matrix\n");
+                    printf("Multiplied Matrix 1 by Constant = \n");
                     for (i = 0; i < m1Rows; i++) {
-                        for (j = 0; j < m1Colum; j++)  {
-                        printf("%d/n", answer[i][j]);
+                        printf("\n");
+                        for (j = 0; j < m1Colum; j++) {
+                        printf("%d ", answer[i][j]);
                     }
                         }
 
                     // calulate martix 2
 
+                    for (i = 0; i < m2Rows; i++) {
+                        for (j = 0; j < m2Colum; j++) {
+                            answer[i][j] = multiplyer * matrix2[i][j];
+                        }
+
+                    }
+
+                    printf("\n");
+                    printf("\nMultiplied Matrix 2 by constant =\n");
+                    for (i = 0; i < m2Rows; i++) {
+                        printf("\n");
+                        for (j = 0; j < m2Colum; j++) {
+                            printf("%d ", answer[i][j]);
+                        }
+                    }
+                    printf("\n");
+                    printf("\n");
 
                     break;
 
