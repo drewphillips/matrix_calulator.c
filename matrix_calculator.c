@@ -1,6 +1,6 @@
 // code borrowed from...
 // https://www.sanfoundry.com/c-program-perform-matrix-multiplication/
-//
+//https://www.geeksforgeeks.org/c-transpose-matrix/
 //
 //https://github.com/drewphillips/matrix_calulator.c
 
@@ -48,6 +48,12 @@ int main()
     int loopMenu;
     int multiplyer = 0;
     int answer[10][10];
+    int outputMatrix[10][10];
+    int transM1[3][3];
+    int transM2[3][3];
+    int trans1Rows;
+    int trans1colum;
+
     
     //Read in integers for two r x c matrices A and B.Max size for both matrices is 10x10.  
 
@@ -226,36 +232,97 @@ int main()
                     printf("\n");
 
                     break;
-
+                    
+                //If matrix multiplication is selected, calculateand print A* B or specific error if operation is not possible
                 case 4:
                     printf("matrix multiply\n");
                     /*
-                    if (array1numColum != array2NumRows) {
-                 printf("Matriices cant be multiplied together");
+                    outputMatrix[i][j] = 0;
+
+                    if (m1Colum != m2Rows)  {
+                        printf(ANSI_COLOR_RED);
+                        printf("\n");
+                        printf("Matriices cant be multiplied together\n");
+                        printf(ANSI_COLOR_RESET);
                            }
 
                     else {
-                    for (i=0; j < array1NumRows; i++);
-                        for (j=0; j < array2numColum; j++);
-                             answer[i][j]=0;
+                        for (i = 0; i < m1Rows; i++) {
+                            for (j = 0; j < m2Colum; j++) {
 
-                           for (k=0; k < array1numColum; k++);
-                           answer[i][j] += matrix1[i][j] * matrix2[i][j];
+                            }
+
+                            for (k = 0; k < m1Rows; k++) {
+                                for (l = 0; l < m2Colum; l++) {
+
+
+                                    outputMatrix[i][j] += matrix1[i][j] * matrix2[k][k] + matrix1[i][j] * matrix2[k][k];
+                                }
+
+                            }
                         }
+                    }
 
+                    printf("Multiplied matrix\n");
+                    for (int i = 0; i < m1Rows; i++) {
+                        for (int j = 0; j < m2Colum; j++) {
+                            printf("\n");
+                            printf("%d\t", outputMatrix[i][j]);
                         }
-
-                        */
+                    }
+                        
+                        printf("\n");
+                        printf("\n");
+                       */
                     break;
-
+                //If transpose is selected, calculateand print A^ T or specific error if operation is not possible
                 case 5:
                     printf("Transpose\n");
+
+
+
+
+                   // if (trans1Rows = m1Rows && trans1colum = m1Colum) {
+
+                    
+
+                   // trans1Rows = m1Rows;
+                    //trans1colum = m1Colum;
+
+                    for (i = 0; i < m1Rows; i++) {
+                        for (j = 0; j < m1Colum; j++) {
+                            transM1[i][j] = matrix1[j][i];
+                        }
+                    }
+
+                    for (i = 0; i < trans1Rows; i++) {
+                        for (j = 0; j < trans1colum; j++) {
+                            printf("%d ", transM1[i][j]);
+                        }
+                    }
+
+                    for (i = 0; i < trans1Rows; i++) {
+                        for (j = 0; j < trans1colum; j++);
+                        printf("%d", transM1[i][j]);
+                    }
+
+                    /*
+                    else {
+                        printf("\n");
+                        printf(ANSI_COLOR_RED);
+                        printf("ERROR! Matrixes are not the saem, more compleax code is needed, FEXME!");
+                        printf(ANSI_COLOR_RESET);
+                        printf("\n");
+
+                    }
+                    }
+                    */
                     break;
 
                 case 6:
                     printf("Determinant\n");
                     break;
-
+                    
                     // print a red error warning if 1 - 6 is not selected.
                 default:
                     printf(ANSI_COLOR_RED);
