@@ -55,7 +55,10 @@ int main()
     int trans1colum;
     int determTotal1;
     int determTotal2;
-
+    int m155[5][5];
+    int m255[5][5];
+    int determinant1;
+    int determinant2;
     
     //Read in integers for two r x c matrices A and B.Max size for both matrices is 10x10.  
 
@@ -133,7 +136,7 @@ int main()
                 switch (userChoice) {
 
                     //If add is selected, calculateand print A + B or specific error if operation is not possible
-                    case 1:
+                case 1:
                     printf("Add Matrix 1 and 2\n");
                     printf("\n");
 
@@ -162,7 +165,7 @@ int main()
                     break;
 
                     //If subtract is selected, calculateand print A - B or specific error if operation is not possible
-                    case 2:
+                case 2:
                     printf("Subtract Matrix 1 from Matrix 2\n");
                     printf("\n");
 
@@ -191,7 +194,7 @@ int main()
                     break;
 
                     //If scalar multiply is selected, read in scalarand calculateand print scalar* A and scalar* B
-                    case 3:
+                case 3:
 
                     printf("Scalar Multiply");
                     printf("scalar multiply, what is the value of the constant to multipy by? \n");
@@ -236,7 +239,7 @@ int main()
                     break;
 
                     //If matrix multiplication is selected, calculateand print A* B or specific error if operation is not possible
-                    case 4:
+                case 4:
                     printf("matrix multiply\n");
                     /*
                     outputMatrix[i][j] = 0;
@@ -278,7 +281,7 @@ int main()
                        */
                     break;
                     //If transpose is selected, calculateand print A^ T or specific error if operation is not possible
-                    case 5:
+                case 5:
                     printf("Transpose\n");
 
                     /*
@@ -323,7 +326,7 @@ int main()
                     */
                     break;
                     //If determinant is selected, calculateand print 2x2 or 3x3 determinants or specific error if operation is not possible
-                    case 6:
+                case 6:
                     printf("Determinant\n");
                     printf("\n");
 
@@ -344,34 +347,112 @@ int main()
                         printf("\n");
                     }
 
-                    
 
-                     // 2x2 simple math
+
+                    // 2x2 simple math
                     else if (m1Rows == 2 && m1Colum == 2 && m2Rows == 2 && m2Colum == 2) {
-                            determTotal1 = matrix1[0][0] * matrix1[1][1] - matrix1[1][0] * matrix1[0][1];
-                            printf("Matrix 1 = %d\n", determTotal1);
+                        determTotal1 = matrix1[0][0] * matrix1[1][1] - matrix1[1][0] * matrix1[0][1];
+                        printf("Matrix 1 = %d\n", determTotal1);
 
-                            determTotal2 = matrix2[0][0] * matrix2[1][1] - matrix2[1][0] * matrix2[0][1];
-                            printf("Martix 2 = %d", determTotal2);
+                        determTotal2 = matrix2[0][0] * matrix2[1][1] - matrix2[1][0] * matrix2[0][1];
+                        printf("Martix 2 = %d", determTotal2);
 
-                            printf("\n");
-                     }
+                        printf("\n");
+                    }
 
-                    
-            
-                       printf("\n");
+                    //3x3 the easy way. 
+                    else if (m1Rows == 3 && m1Colum == 3 && m2Rows == 3 && m2Colum == 3) {
+                        determinant1 = matrix1[0][0] * ((matrix1[1][1] * matrix1[2][2]) - (matrix1[2][1] * matrix1[1][2])) - matrix1[0][1] * (matrix1[1][0] * matrix1[2][2] - matrix1[2][0] * matrix1[1][2]) + matrix1[0][2] * (matrix1[1][0] * matrix1[2][1] - matrix1[2][0] * matrix1[1][1]);
+                        determinant2 = matrix2[0][0] * ((matrix2[1][1] * matrix2[2][2]) - (matrix2[2][1] * matrix2[1][2])) - matrix2[0][1] * (matrix2[1][0] * matrix2[2][2] - matrix2[2][0] * matrix2[1][2]) + matrix2[0][2] * (matrix2[1][0] * matrix2[2][1] - matrix2[2][0] * matrix2[1][1]);
 
-                        // else if 3x3 ...
-                        //3x3 complex math, with changed starting points. and vaules added to element 3 and 4 from 0 and 2. 
-                        /* else if (m1Rows == 3) && m2Colum == 3) {
-                        (i = 0; i < m1Rows; i++);
-                        (i = 1; i < m2Colum; i--);
+
+                        printf("\nDeterminant of the first 3X3 matrix: %d", determinant1);
+                        printf("\n");
+
+                        printf("\n");
+
+                        printf("\nDeterminant of the second 3X3 matrix: %d", determinant2);
+
+                        printf("\n");
+
+                    }
+
+                    //THe hard way, yet the easy way in math on paper... 
+                    /*
+                    else if (m1Rows == 3 && m1Colum == 3 && m2Rows == 3 && m2Colum == 3) {
+
+                        //convert Matrix 1 to 5x3
+                        for (i = 0; i < m1Rows; i++) {
+                            for (j = 0; j < m1Colum; j++) {
+                                (m155[i][j] = matrix1[i][j]);
+
+                            }
                         }
 
+
+
+                        m155[0][3] = matrix1[0][0];
+                        m155[1][3] = matrix1[1][0];
+                        m155[2][3] = matrix1[2][0];
+
+                        m155[0][4] = matrix1[0][1];
+                        m155[1][4] = matrix1[1][1];
+                        m155[2][4] = matrix1[2][1];
+
+                        printf("Matrix Array 1 converted to 5x3\n");
+
+                        for (i = 0; i < 3; i++) {
+                            for (j = 0; j < 5; j++) {
+                                printf("%5d", m155[i][j]);
+                            }
+                            printf("\n");
+                        }
+
+                        //convert Matrix 2 to 5x3
+                        /*
+                        for (i = 0; i < m2Rows; i++) {
+                            for (j = 0; j < m2Colum; j++) {
+                                (m255[i][j] = matrix2[i][j]);
+
+                            }
+                        }
+                        m255[0][3] = matrix2[0][0];
+                        m255[1][3] = matrix2[1][0];
+                        m255[2][3] = matrix2[2][0];
+
+                        m255[0][4] = matrix2[0][1];
+                        m255[1][4] = matrix2[1][1];
+                        m255[2][4] = matrix2[2][1];
+
+                        printf("Matrix Array 2 5x3\n");
+
+                        for (i = 0; i < 5; i++) {
+                            for (j = 0; j < 3; j++) {
+                                printf("%5d", m255[i][j]);
+                            }
+                            printf("\n");
+                        }
+
+                        printf("now we apply the long math ... \n");
+
+                        determTotal1 = ((matrix1[0][0] * matrix1[1][1] * matrix1[2][2]) + (matrix1[0][1] * matrix1[1][2] * matrix1[2][3]) + (matrix1[0][2] * matrix1[1][3] * matrix1[2][4])) - ((matrix1[2][0] * matrix1[1][1] * matrix1[0][2]) + (matrix1[2][1] * matrix1[1][2] * matrix1[0][3]) + (matrix1[2][2] * matrix1[1][3] * matrix1[0][4]));
+
+                        printf("Matrix 1 = %d\n", determTotal1);
+
+                        /*
+                        determTotal2 = matrix2[0][0] * matrix2[1][1] * matrix2[2][2] + matrix2[0][1] * matrix2[1][2] * matrix2[2][3] + matrix2[0][2] * matrix2[1][3] * matrix2[2][4] - matrix2[2][0] * matrix2[1][1] * matrix2[0][2] + matrix2[2][1] * matrix2[1][2] * matrix2[0][3] + matrix2[2][2] * matrix2[1][3] * matrix2[0][4];
+
+
+
+                        printf("Martix 2 = %d\n", determTotal2);
+
+                        printf("and I have no idea what the jiberish output on the screen is ... \n");
+                        }
+
+
+                        printf("\n");
                         */
-
-
-                
+                    
                         break;
                     
                     // print a red error warning if 1 - 6 is not selected.
