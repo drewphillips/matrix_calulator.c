@@ -1,7 +1,9 @@
 // code borrowed from...
 // https://www.sanfoundry.com/c-program-perform-matrix-multiplication/
 //https://www.geeksforgeeks.org/c-transpose-matrix/
-//
+//https://www.sanfoundry.com/c-program-compute-determinant-matrix/
+// 
+// 
 //https://github.com/drewphillips/matrix_calulator.c
 
 /* instructions:
@@ -241,47 +243,46 @@ int main()
                     //If matrix multiplication is selected, calculateand print A* B or specific error if operation is not possible
                 case 4:
                     printf("matrix multiply\n");
-                    /*
-                    outputMatrix[i][j] = 0;
 
-                    if (m1Colum != m2Rows)  {
+                    //outputMatrix[i][j] = 0;
+
+                    if (m1Colum != m2Rows) {
                         printf(ANSI_COLOR_RED);
                         printf("\n");
                         printf("Matriices cant be multiplied together\n");
                         printf(ANSI_COLOR_RESET);
-                           }
-
-                    else {
-                        for (i = 0; i < m1Rows; i++) {
-                            for (j = 0; j < m2Colum; j++) {
-
-                            }
-
-                            for (k = 0; k < m1Rows; k++) {
-                                for (l = 0; l < m2Colum; l++) {
-
-
-                                    outputMatrix[i][j] += matrix1[i][j] * matrix2[k][k] + matrix1[i][j] * matrix2[k][k];
-                                }
-
-                            }
-                        }
                     }
 
+
+                    for (i = 0; i < m1Rows; i++) {
+                        for (j = 0; j < m1Colum; j++) {
+                            outputMatrix[i][j] = 0;
+                        
+                            for (k = 0; k < m1Colum; k++) {
+
+                                outputMatrix[i][j] = matrix1[i][k] * matrix2[k][j] + matrix1[i][j] * matrix2[k][k];
+
+
+
+                            }
+
+                        }
+
+                    }
+                    printf("\n");
                     printf("Multiplied matrix\n");
                     for (int i = 0; i < m1Rows; i++) {
                         for (int j = 0; j < m2Colum; j++) {
-                            printf("\n");
+
                             printf("%d\t", outputMatrix[i][j]);
                         }
+                        printf("\n");
                     }
 
-                        printf("\n");
-                        printf("\n");
-                       */
                     break;
+                    
                     //If transpose is selected, calculateand print A^ T or specific error if operation is not possible
-                case 5:
+                    case 5:
                     printf("Transpose\n");
 
                     /*
@@ -375,85 +376,87 @@ int main()
 
                         printf("\n");
 
-                    }
+                    } 
 
-                    //THe hard way, yet the easy way in math on paper... 
-                    /*
-                    else if (m1Rows == 3 && m1Colum == 3 && m2Rows == 3 && m2Colum == 3) {
+                    break;
 
-                        //convert Matrix 1 to 5x3
-                        for (i = 0; i < m1Rows; i++) {
-                            for (j = 0; j < m1Colum; j++) {
-                                (m155[i][j] = matrix1[i][j]);
+                             //THe hard way, yet the easy way in math on paper... 
+                            /*
+                            else if (m1Rows == 3 && m1Colum == 3 && m2Rows == 3 && m2Colum == 3) {
 
+                            //convert Matrix 1 to 5x3
+                            for (i = 0; i < m1Rows; i++) {
+                                for (j = 0; j < m1Colum; j++) {
+                                    (m155[i][j] = matrix1[i][j]);
+
+                                }
                             }
-                        }
 
 
 
-                        m155[0][3] = matrix1[0][0];
-                        m155[1][3] = matrix1[1][0];
-                        m155[2][3] = matrix1[2][0];
+                            m155[0][3] = matrix1[0][0];
+                            m155[1][3] = matrix1[1][0];
+                            m155[2][3] = matrix1[2][0];
 
-                        m155[0][4] = matrix1[0][1];
-                        m155[1][4] = matrix1[1][1];
-                        m155[2][4] = matrix1[2][1];
+                            m155[0][4] = matrix1[0][1];
+                            m155[1][4] = matrix1[1][1];
+                            m155[2][4] = matrix1[2][1];
 
-                        printf("Matrix Array 1 converted to 5x3\n");
+                            printf("Matrix Array 1 converted to 5x3\n");
 
-                        for (i = 0; i < 3; i++) {
-                            for (j = 0; j < 5; j++) {
-                                printf("%5d", m155[i][j]);
+                            for (i = 0; i < 3; i++) {
+                                for (j = 0; j < 5; j++) {
+                                    printf("%5d", m155[i][j]);
+                                }
+                                printf("\n");
                             }
+
+                            //convert Matrix 2 to 5x3
+                            /*
+                            for (i = 0; i < m2Rows; i++) {
+                                for (j = 0; j < m2Colum; j++) {
+                                    (m255[i][j] = matrix2[i][j]);
+
+                                }
+                            }
+                            m255[0][3] = matrix2[0][0];
+                            m255[1][3] = matrix2[1][0];
+                            m255[2][3] = matrix2[2][0];
+
+                            m255[0][4] = matrix2[0][1];
+                            m255[1][4] = matrix2[1][1];
+                            m255[2][4] = matrix2[2][1];
+
+                            printf("Matrix Array 2 5x3\n");
+
+                            for (i = 0; i < 5; i++) {
+                                for (j = 0; j < 3; j++) {
+                                    printf("%5d", m255[i][j]);
+                                }
+                                printf("\n");
+                            }
+
+                            printf("now we apply the long math ... \n");
+
+                            determTotal1 = ((matrix1[0][0] * matrix1[1][1] * matrix1[2][2]) + (matrix1[0][1] * matrix1[1][2] * matrix1[2][3]) + (matrix1[0][2] * matrix1[1][3] * matrix1[2][4])) - ((matrix1[2][0] * matrix1[1][1] * matrix1[0][2]) + (matrix1[2][1] * matrix1[1][2] * matrix1[0][3]) + (matrix1[2][2] * matrix1[1][3] * matrix1[0][4]));
+
+                            printf("Matrix 1 = %d\n", determTotal1);
+
+                            /*
+                            determTotal2 = matrix2[0][0] * matrix2[1][1] * matrix2[2][2] + matrix2[0][1] * matrix2[1][2] * matrix2[2][3] + matrix2[0][2] * matrix2[1][3] * matrix2[2][4] - matrix2[2][0] * matrix2[1][1] * matrix2[0][2] + matrix2[2][1] * matrix2[1][2] * matrix2[0][3] + matrix2[2][2] * matrix2[1][3] * matrix2[0][4];
+
+
+
+                            printf("Martix 2 = %d\n", determTotal2);
+
+                            printf("and I have no idea what the jiberish output on the screen is ... \n");
+                            }
+
+
                             printf("\n");
-                        }
-
-                        //convert Matrix 2 to 5x3
-                        /*
-                        for (i = 0; i < m2Rows; i++) {
-                            for (j = 0; j < m2Colum; j++) {
-                                (m255[i][j] = matrix2[i][j]);
-
-                            }
-                        }
-                        m255[0][3] = matrix2[0][0];
-                        m255[1][3] = matrix2[1][0];
-                        m255[2][3] = matrix2[2][0];
-
-                        m255[0][4] = matrix2[0][1];
-                        m255[1][4] = matrix2[1][1];
-                        m255[2][4] = matrix2[2][1];
-
-                        printf("Matrix Array 2 5x3\n");
-
-                        for (i = 0; i < 5; i++) {
-                            for (j = 0; j < 3; j++) {
-                                printf("%5d", m255[i][j]);
-                            }
-                            printf("\n");
-                        }
-
-                        printf("now we apply the long math ... \n");
-
-                        determTotal1 = ((matrix1[0][0] * matrix1[1][1] * matrix1[2][2]) + (matrix1[0][1] * matrix1[1][2] * matrix1[2][3]) + (matrix1[0][2] * matrix1[1][3] * matrix1[2][4])) - ((matrix1[2][0] * matrix1[1][1] * matrix1[0][2]) + (matrix1[2][1] * matrix1[1][2] * matrix1[0][3]) + (matrix1[2][2] * matrix1[1][3] * matrix1[0][4]));
-
-                        printf("Matrix 1 = %d\n", determTotal1);
-
-                        /*
-                        determTotal2 = matrix2[0][0] * matrix2[1][1] * matrix2[2][2] + matrix2[0][1] * matrix2[1][2] * matrix2[2][3] + matrix2[0][2] * matrix2[1][3] * matrix2[2][4] - matrix2[2][0] * matrix2[1][1] * matrix2[0][2] + matrix2[2][1] * matrix2[1][2] * matrix2[0][3] + matrix2[2][2] * matrix2[1][3] * matrix2[0][4];
-
-
-
-                        printf("Martix 2 = %d\n", determTotal2);
-
-                        printf("and I have no idea what the jiberish output on the screen is ... \n");
-                        }
-
-
-                        printf("\n");
-                        */
+                            */
                     
-                        break;
+                        
                     
                     // print a red error warning if 1 - 6 is not selected.
                     default:
