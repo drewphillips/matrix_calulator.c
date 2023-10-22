@@ -49,10 +49,12 @@ int main()
     int multiplyer = 0;
     int answer[10][10];
     int outputMatrix[10][10];
-    int transM1[3][3];
+    int transM1[m1Rows][m1Colum];
     int transM2[3][3];
     int trans1Rows;
     int trans1colum;
+    int determTotal1;
+    int determTotal2;
 
     
     //Read in integers for two r x c matrices A and B.Max size for both matrices is 10x10.  
@@ -130,8 +132,8 @@ int main()
 
                 switch (userChoice) {
 
-                //If add is selected, calculateand print A + B or specific error if operation is not possible
-                case 1:
+                    //If add is selected, calculateand print A + B or specific error if operation is not possible
+                    case 1:
                     printf("Add Matrix 1 and 2\n");
                     printf("\n");
 
@@ -155,12 +157,12 @@ int main()
                         printf("ERROR! Matrices must be the same size to add together.");
                         printf(ANSI_COLOR_RESET);
                         printf("\n");
-                    }                    
-                    
+                    }
+
                     break;
 
-                //If subtract is selected, calculateand print A - B or specific error if operation is not possible
-                case 2:
+                    //If subtract is selected, calculateand print A - B or specific error if operation is not possible
+                    case 2:
                     printf("Subtract Matrix 1 from Matrix 2\n");
                     printf("\n");
 
@@ -188,14 +190,14 @@ int main()
 
                     break;
 
-                //If scalar multiply is selected, read in scalarand calculateand print scalar* A and scalar* B
-                case 3:
-                    
+                    //If scalar multiply is selected, read in scalarand calculateand print scalar* A and scalar* B
+                    case 3:
+
                     printf("Scalar Multiply");
                     printf("scalar multiply, what is the value of the constant to multipy by? \n");
                     scanf("%d", &multiplyer);
                     printf("You entered %d\n", multiplyer);
-                    
+
                     for (i = 0; i < m1Rows; i++) {
                         for (j = 0; j < m1Colum; j++) {
                             answer[i][j] = multiplyer * matrix1[i][j];
@@ -207,9 +209,9 @@ int main()
                     for (i = 0; i < m1Rows; i++) {
                         printf("\n");
                         for (j = 0; j < m1Colum; j++) {
-                        printf("%d ", answer[i][j]);
-                    }
+                            printf("%d ", answer[i][j]);
                         }
+                    }
 
                     // calulate martix 2
 
@@ -232,9 +234,9 @@ int main()
                     printf("\n");
 
                     break;
-                    
-                //If matrix multiplication is selected, calculateand print A* B or specific error if operation is not possible
-                case 4:
+
+                    //If matrix multiplication is selected, calculateand print A* B or specific error if operation is not possible
+                    case 4:
                     printf("matrix multiply\n");
                     /*
                     outputMatrix[i][j] = 0;
@@ -270,28 +272,30 @@ int main()
                             printf("%d\t", outputMatrix[i][j]);
                         }
                     }
-                        
+
                         printf("\n");
                         printf("\n");
                        */
                     break;
-                //If transpose is selected, calculateand print A^ T or specific error if operation is not possible
-                case 5:
+                    //If transpose is selected, calculateand print A^ T or specific error if operation is not possible
+                    case 5:
                     printf("Transpose\n");
 
-
+                    /*
 
 
                    // if (trans1Rows = m1Rows && trans1colum = m1Colum) {
 
-                    
+
 
                    // trans1Rows = m1Rows;
                     //trans1colum = m1Colum;
 
                     for (i = 0; i < m1Rows; i++) {
-                        for (j = 0; j < m1Colum; j++) {
-                            transM1[i][j] = matrix1[j][i];
+                        transM1[i] = matrix1[i][j];
+
+                        // for (j = 0; j < m1Colum; j++) {
+                            transM1[j][i] = matrix1[i][j];
                         }
                     }
 
@@ -301,10 +305,10 @@ int main()
                         }
                     }
 
-                    for (i = 0; i < trans1Rows; i++) {
-                        for (j = 0; j < trans1colum; j++);
-                        printf("%d", transM1[i][j]);
-                    }
+                    //for (i = 0; i < trans1Rows; i++) {
+                        //for (j = 0; j < trans1colum; j++);
+                        //printf("%d", transM1[i][j]);
+                    //}
 
                     /*
                     else {
@@ -318,13 +322,60 @@ int main()
                     }
                     */
                     break;
-
-                case 6:
+                    //If determinant is selected, calculateand print 2x2 or 3x3 determinants or specific error if operation is not possible
+                    case 6:
                     printf("Determinant\n");
-                    break;
+                    printf("\n");
+
+                    //error reporting
+                    if (m1Rows != m1Colum) {
+                        printf("\n");
+                        printf(ANSI_COLOR_RED);
+                        printf("ERROR! Matrices 1 must be square to find the determinant\n");
+                        printf(ANSI_COLOR_RESET);
+                        printf("\n");
+                    }
+
+                    else if (m2Rows != m2Colum) {
+                        printf("\n");
+                        printf(ANSI_COLOR_RED);
+                        printf("ERROR! Matrices 2 must be square to find the determinant\n");
+                        printf(ANSI_COLOR_RESET);
+                        printf("\n");
+                    }
+
+                    
+
+                     // 2x2 simple math
+                    else if (m1Rows == 2 && m1Colum == 2 && m2Rows == 2 && m2Colum == 2) {
+                            determTotal1 = matrix1[0][0] * matrix1[1][1] - matrix1[1][0] * matrix1[0][1];
+                            printf("Matrix 1 = %d\n", determTotal1);
+
+                            determTotal2 = matrix2[0][0] * matrix2[1][1] - matrix2[1][0] * matrix2[0][1];
+                            printf("Martix 2 = %d", determTotal2);
+
+                            printf("\n");
+                     }
+
+                    
+            
+                       printf("\n");
+
+                        // else if 3x3 ...
+                        //3x3 complex math, with changed starting points. and vaules added to element 3 and 4 from 0 and 2. 
+                        /* else if (m1Rows == 3) && m2Colum == 3) {
+                        (i = 0; i < m1Rows; i++);
+                        (i = 1; i < m2Colum; i--);
+                        }
+
+                        */
+
+
+                
+                        break;
                     
                     // print a red error warning if 1 - 6 is not selected.
-                default:
+                    default:
                     printf(ANSI_COLOR_RED);
                     printf("Invalid option, please select 1 - 6 only\n");
                     printf(ANSI_COLOR_RESET);
