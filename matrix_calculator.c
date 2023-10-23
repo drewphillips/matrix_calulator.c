@@ -2,23 +2,21 @@
 // https://www.sanfoundry.com/c-program-perform-matrix-multiplication/
 //https://www.geeksforgeeks.org/c-transpose-matrix/
 //https://www.sanfoundry.com/c-program-compute-determinant-matrix/
-// 
+// https://www.tutorialspoint.com/how-to-calculate-transpose-of-a-matrix-using-c-program // this one did not help me solve number 5....
 // 
 //https://github.com/drewphillips/matrix_calulator.c
 
-/* instructions:
-Write a C program to emulate a matrix calculator.Your program must ...
-Read in integers for two r x c matrices Aand B.Max size for both matrices is 10x10.
-Print matrix A and matrix B.
-Loop the entire program until the user wants to quit.
-Display menu to choose from add, subtract, scalar multiply, matrix multiply, transposeand determinant
-Loop the menu until the user wants to quit.This allows us to choose more than one menu option on the original Aand B matrices.
-If add is selected, calculateand print A + B or specific error if operation is not possible
-If subtract is selected, calculateand print A - B or specific error if operation is not possible
-If scalar multiply is selected, read in scalarand calculateand print scalar* Aand scalar* B
-If matrix multiplication is selected, calculateand print A* B or specific error if operation is not possible
-If transpose is selected, calculateand print A^ T or specific error if operation is not possible
-If determinant is selected, calculateand print 2x2 or 3x3 determinants or specific error if operation is not possible
+/* 
+
+Notes: 
+I spent the better part of Sunday trying to calculate the Determinant the hard way by expanding the matrix and cross multiplying, 
+trying to come up with some fancy for loop. 
+That's how I learned how to find the determinant not realizing there was a simpler formula for programming... 
+oh vey, that code is still below commented out.
+
+And error detection could be better on option 6 as if one matrix is square but the other is not, the code could still compute the square matrix.
+
+Adding color, all answers are in blue, and errors are in red.
 
 */ 
 
@@ -51,10 +49,8 @@ int main()
     int multiplyer = 0;
     int answer[10][10];
     int outputMatrix[10][10];
-    int transM1[m1Rows][m1Colum];
-    int transM2[3][3];
-    int trans1Rows;
-    int trans1colum;
+    int transM1[m1Colum][m1Rows];  // set with the inverse of the primary array
+    int transM2[m2Colum][m2Rows];   // set with the inverse of the primary array
     int determTotal1;
     int determTotal2;
     int m155[5][5];
@@ -284,48 +280,34 @@ int main()
                     //If transpose is selected, calculateand print A^ T or specific error if operation is not possible
                     case 5:
                     printf("Transpose\n");
-
-                    /*
-
-
-                   // if (trans1Rows = m1Rows && trans1colum = m1Colum) {
-
-
-
-                   // trans1Rows = m1Rows;
-                    //trans1colum = m1Colum;
-
-                    for (i = 0; i < m1Rows; i++) {
-                        transM1[i] = matrix1[i][j];
-
-                        // for (j = 0; j < m1Colum; j++) {
-                            transM1[j][i] = matrix1[i][j];
-                        }
-                    }
-
-                    for (i = 0; i < trans1Rows; i++) {
-                        for (j = 0; j < trans1colum; j++) {
-                            printf("%d ", transM1[i][j]);
-                        }
-                    }
-
-                    //for (i = 0; i < trans1Rows; i++) {
-                        //for (j = 0; j < trans1colum; j++);
-                        //printf("%d", transM1[i][j]);
-                    //}
-
-                    /*
-                    else {
-                        printf("\n");
-                        printf(ANSI_COLOR_RED);
-                        printf("ERROR! Matrixes are not the saem, more compleax code is needed, FEXME!");
-                        printf(ANSI_COLOR_RESET);
-                        printf("\n");
-
-                    }
-                    }
+                    
+                    /* Vars used
+                    int transM1[m1Colum][m1Rows];  // set with the inverse of the primary array
+                    int transM2[m2Colum][m2Rows];   // set with the inverse of the primary array
+                    
                     */
+                    for (i = 0; i < m1Rows; i++) {
+                        
+                        for (j = 0; j < m1Colum; j++) {
+                        
+                            transM1[j][i] = matrix1[i][j]; 
+                   
+                        }
+                    }
+
+                    printf("Transposed matrix\n");
+                    for (i = 0; i < m1Colum; i++) {
+                        for (j = 0; j < m1Rows; j++) {
+
+                            printf("%d\t", transM1[i][j]);
+                        }
+                        printf("\n");
+                    }
+
+
+
                     break;
+                
                     //If determinant is selected, calculateand print 2x2 or 3x3 determinants or specific error if operation is not possible
                 case 6:
                     printf("Determinant\n");
