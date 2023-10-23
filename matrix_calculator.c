@@ -1,22 +1,23 @@
-// code borrowed from...
-// https://www.sanfoundry.com/c-program-perform-matrix-multiplication/
-//https://www.geeksforgeeks.org/c-transpose-matrix/
-//https://www.sanfoundry.com/c-program-compute-determinant-matrix/
-// https://www.tutorialspoint.com/how-to-calculate-transpose-of-a-matrix-using-c-program // this one did not help me solve number 5....
-// 
-//https://github.com/drewphillips/matrix_calulator.c
-
-/* 
+/*
+ENG 175 Comp Program Engineering
+code borrowed from...
+https://www.sanfoundry.com/c-program-perform-matrix-multiplication/
+https://www.geeksforgeeks.org/c-transpose-matrix/
+https://www.sanfoundry.com/c-program-compute-determinant-matrix/
+https://www.tutorialspoint.com/how-to-calculate-transpose-of-a-matrix-using-c-program // this one did not help me solve number 5....
+ 
+My code on GitHub: https://github.com/drewphillips/matrix_calulator.c
 
 Notes: 
+
 I spent the better part of Sunday trying to calculate the Determinant the hard way by expanding the matrix and cross multiplying, 
 trying to come up with some fancy for loop. 
-That's how I learned how to find the determinant not realizing there was a simpler formula for programming... 
-oh vey, that code is still below commented out.
 
-And error detection could be better on option 6 as if one matrix is square but the other is not, the code could still compute the square matrix.
+That's how I learned how to find the determinant not realizing there was a simpler formula for programming... oy vey.
 
-Adding color, all answers are in blue, and errors are in red.
+Error detection could be better on option 6 as if one matrix is square but the other is not, the code could still compute the square matrix.
+
+Adding color, all answers are in blue, errors are in red. Menu is in Magenta.
 
 */ 
 
@@ -33,9 +34,6 @@ Adding color, all answers are in blue, and errors are in red.
 #define ANSI_COLOR_MAGENTA "\x1b[35m"
 #define ANSI_COLOR_CYAN "\x1b[36m"
 #define ANSI_COLOR_RESET "\x1b[0m"
-
-
-
 
 int main()
 {
@@ -54,10 +52,6 @@ int main()
     int outputMatrix[10][10];
     int transM1[m1Colum][m1Rows];  // set with the inverse of the primary array
     int transM2[m2Colum][m2Rows];   // set with the inverse of the primary array
-    int determTotal1;
-    int determTotal2;
-    int m155[5][5];
-    int m255[5][5];
     int determinant1;
     int determinant2;
     
@@ -117,8 +111,6 @@ int main()
                 printf("\n");
           }
     
-
-
           //Display menu to choose from add, subtract, scalar multiply, matrix multiply, transposeand determinant
           do {
               
@@ -133,7 +125,7 @@ int main()
                 printf("6. Determinant Matrix 1 + Matrix 2\n");
                 printf(ANSI_COLOR_RESET);
 
-                //and now a menue
+                //and now a menu
                 printf("\nChoose an option: ");
                 scanf("%d", &userChoice);
 
@@ -265,7 +257,6 @@ int main()
                         printf(ANSI_COLOR_RESET);
                     }
 
-
                     for (i = 0; i < m1Rows; i++) {
                         for (j = 0; j < m1Colum; j++) {
                             outputMatrix[i][j] = 0;
@@ -273,9 +264,6 @@ int main()
                             for (k = 0; k < m1Colum; k++) {
 
                                 outputMatrix[i][j] = matrix1[i][k] * matrix2[k][j] + matrix1[i][j] * matrix2[k][k];
-
-
-
                             }
 
                         }
@@ -324,8 +312,6 @@ int main()
                         printf("\n");
                     }
 
-
-
                     break;
                 
                     //If determinant is selected, calculateand print 2x2 or 3x3 determinants or specific error if operation is not possible
@@ -349,8 +335,6 @@ int main()
                         printf(ANSI_COLOR_RESET);
                         printf("\n");
                     }
-
-
 
                     // 2x2 simple math
                     else if (m1Rows == 2 && m1Colum == 2 && m2Rows == 2 && m2Colum == 2) {
@@ -384,86 +368,8 @@ int main()
 
                     } 
 
-                    break;
-
-                             //THe hard way, yet the easy way in math on paper... 
-                            /*
-                            else if (m1Rows == 3 && m1Colum == 3 && m2Rows == 3 && m2Colum == 3) {
-
-                            //convert Matrix 1 to 5x3
-                            for (i = 0; i < m1Rows; i++) {
-                                for (j = 0; j < m1Colum; j++) {
-                                    (m155[i][j] = matrix1[i][j]);
-
-                                }
-                            }
-
-
-
-                            m155[0][3] = matrix1[0][0];
-                            m155[1][3] = matrix1[1][0];
-                            m155[2][3] = matrix1[2][0];
-
-                            m155[0][4] = matrix1[0][1];
-                            m155[1][4] = matrix1[1][1];
-                            m155[2][4] = matrix1[2][1];
-
-                            printf("Matrix Array 1 converted to 5x3\n");
-
-                            for (i = 0; i < 3; i++) {
-                                for (j = 0; j < 5; j++) {
-                                    printf("%5d", m155[i][j]);
-                                }
-                                printf("\n");
-                            }
-
-                            //convert Matrix 2 to 5x3
-                            /*
-                            for (i = 0; i < m2Rows; i++) {
-                                for (j = 0; j < m2Colum; j++) {
-                                    (m255[i][j] = matrix2[i][j]);
-
-                                }
-                            }
-                            m255[0][3] = matrix2[0][0];
-                            m255[1][3] = matrix2[1][0];
-                            m255[2][3] = matrix2[2][0];
-
-                            m255[0][4] = matrix2[0][1];
-                            m255[1][4] = matrix2[1][1];
-                            m255[2][4] = matrix2[2][1];
-
-                            printf("Matrix Array 2 5x3\n");
-
-                            for (i = 0; i < 5; i++) {
-                                for (j = 0; j < 3; j++) {
-                                    printf("%5d", m255[i][j]);
-                                }
-                                printf("\n");
-                            }
-
-                            printf("now we apply the long math ... \n");
-
-                            determTotal1 = ((matrix1[0][0] * matrix1[1][1] * matrix1[2][2]) + (matrix1[0][1] * matrix1[1][2] * matrix1[2][3]) + (matrix1[0][2] * matrix1[1][3] * matrix1[2][4])) - ((matrix1[2][0] * matrix1[1][1] * matrix1[0][2]) + (matrix1[2][1] * matrix1[1][2] * matrix1[0][3]) + (matrix1[2][2] * matrix1[1][3] * matrix1[0][4]));
-
-                            printf("Matrix 1 = %d\n", determTotal1);
-
-                            /*
-                            determTotal2 = matrix2[0][0] * matrix2[1][1] * matrix2[2][2] + matrix2[0][1] * matrix2[1][2] * matrix2[2][3] + matrix2[0][2] * matrix2[1][3] * matrix2[2][4] - matrix2[2][0] * matrix2[1][1] * matrix2[0][2] + matrix2[2][1] * matrix2[1][2] * matrix2[0][3] + matrix2[2][2] * matrix2[1][3] * matrix2[0][4];
-
-
-
-                            printf("Martix 2 = %d\n", determTotal2);
-
-                            printf("and I have no idea what the jiberish output on the screen is ... \n");
-                            }
-
-
-                            printf("\n");
-                            */
-                    
-                        
-                    y
+                     break;
+                 
                     // print a red error warning if 1 - 6 is not selected.
                     default:
                     printf(ANSI_COLOR_RED);
