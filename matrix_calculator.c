@@ -34,6 +34,9 @@ Adding color, all answers are in blue, and errors are in red.
 #define ANSI_COLOR_CYAN "\x1b[36m"
 #define ANSI_COLOR_RESET "\x1b[0m"
 
+
+
+
 int main()
 {
     int matrix1[10][10];
@@ -118,6 +121,8 @@ int main()
 
           //Display menu to choose from add, subtract, scalar multiply, matrix multiply, transposeand determinant
           do {
+              
+                printf(ANSI_COLOR_MAGENTA);
                 printf("\n\n\n");
                 printf("M E N U\n");
                 printf("1. Add Matrix 1 + Matrix 2\n");
@@ -126,6 +131,7 @@ int main()
                 printf("4. Matrix multiplyMatrix 1 + Matrix 2\n");
                 printf("5. Transpose Matrix 1 + Matrix 2\n");
                 printf("6. Determinant Matrix 1 + Matrix 2\n");
+                printf(ANSI_COLOR_RESET);
 
                 //and now a menue
                 printf("\nChoose an option: ");
@@ -147,11 +153,14 @@ int main()
 
                         for (i = 0; i < m1Rows; i++) {
                             for (j = 0; j < m1Colum; j++) {
+                                printf(ANSI_COLOR_BLUE);
                                 printf("%d ", answer[i][j]);
+                                printf(ANSI_COLOR_RESET);
                             }
                             printf("\n");
                         }
                     }
+
                     else {
                         printf("\n");
                         printf(ANSI_COLOR_RED);
@@ -176,11 +185,14 @@ int main()
 
                         for (i = 0; i < m1Rows; i++) {
                             for (j = 0; j < m1Colum; j++) {
+                                printf(ANSI_COLOR_BLUE);
                                 printf("%d ", answer[i][j]);
+                                printf(ANSI_COLOR_RESET);
                             }
                             printf("\n");
                         }
                     }
+
                     else {
                         printf("\n");
                         printf(ANSI_COLOR_RED);
@@ -210,7 +222,9 @@ int main()
                     for (i = 0; i < m1Rows; i++) {
                         printf("\n");
                         for (j = 0; j < m1Colum; j++) {
+                            printf(ANSI_COLOR_BLUE);
                             printf("%d ", answer[i][j]);
+                            printf(ANSI_COLOR_RESET);
                         }
                     }
 
@@ -228,7 +242,9 @@ int main()
                     for (i = 0; i < m2Rows; i++) {
                         printf("\n");
                         for (j = 0; j < m2Colum; j++) {
+                            printf(ANSI_COLOR_BLUE);
                             printf("%d ", answer[i][j]);
+                            printf(ANSI_COLOR_RESET);
                         }
                     }
                     printf("\n");
@@ -270,7 +286,9 @@ int main()
                     for (int i = 0; i < m1Rows; i++) {
                         for (int j = 0; j < m2Colum; j++) {
 
+                            printf(ANSI_COLOR_BLUE);
                             printf("%d\t", outputMatrix[i][j]);
+                            printf(ANSI_COLOR_RESET);
                         }
                         printf("\n");
                     }
@@ -299,7 +317,9 @@ int main()
                     for (i = 0; i < m1Colum; i++) {
                         for (j = 0; j < m1Rows; j++) {
 
+                            printf(ANSI_COLOR_BLUE);
                             printf("%d\t", transM1[i][j]);
+                            printf(ANSI_COLOR_RESET);
                         }
                         printf("\n");
                     }
@@ -334,12 +354,16 @@ int main()
 
                     // 2x2 simple math
                     else if (m1Rows == 2 && m1Colum == 2 && m2Rows == 2 && m2Colum == 2) {
+                        
                         determTotal1 = matrix1[0][0] * matrix1[1][1] - matrix1[1][0] * matrix1[0][1];
+                        printf(ANSI_COLOR_BLUE);
                         printf("Matrix 1 = %d\n", determTotal1);
-
+                        
+                    
                         determTotal2 = matrix2[0][0] * matrix2[1][1] - matrix2[1][0] * matrix2[0][1];
                         printf("Martix 2 = %d", determTotal2);
-
+                        printf(ANSI_COLOR_RESET);
+                       
                         printf("\n");
                     }
 
@@ -348,14 +372,14 @@ int main()
                         determinant1 = matrix1[0][0] * ((matrix1[1][1] * matrix1[2][2]) - (matrix1[2][1] * matrix1[1][2])) - matrix1[0][1] * (matrix1[1][0] * matrix1[2][2] - matrix1[2][0] * matrix1[1][2]) + matrix1[0][2] * (matrix1[1][0] * matrix1[2][1] - matrix1[2][0] * matrix1[1][1]);
                         determinant2 = matrix2[0][0] * ((matrix2[1][1] * matrix2[2][2]) - (matrix2[2][1] * matrix2[1][2])) - matrix2[0][1] * (matrix2[1][0] * matrix2[2][2] - matrix2[2][0] * matrix2[1][2]) + matrix2[0][2] * (matrix2[1][0] * matrix2[2][1] - matrix2[2][0] * matrix2[1][1]);
 
-
+                        printf(ANSI_COLOR_BLUE);
                         printf("\nDeterminant of the first 3X3 matrix: %d", determinant1);
                         printf("\n");
 
                         printf("\n");
 
                         printf("\nDeterminant of the second 3X3 matrix: %d", determinant2);
-
+                        printf(ANSI_COLOR_RESET);
                         printf("\n");
 
                     } 
@@ -439,7 +463,7 @@ int main()
                             */
                     
                         
-                    
+                    y
                     // print a red error warning if 1 - 6 is not selected.
                     default:
                     printf(ANSI_COLOR_RED);
